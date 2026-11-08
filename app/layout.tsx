@@ -1,10 +1,9 @@
 import type { Metadata, Viewport } from 'next';
-import { Instrument_Sans, Martian_Mono } from 'next/font/google';
+import { Martian_Mono, Schibsted_Grotesk } from 'next/font/google';
 import './globals.css';
 
-const sans = Instrument_Sans({
+const sans = Schibsted_Grotesk({
   subsets: ['latin'],
-  axes: ['wdth'],
   variable: '--font-sans',
   display: 'swap',
 });

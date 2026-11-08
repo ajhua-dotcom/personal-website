@@ -23,9 +23,8 @@
 .name {
   margin: 0;
   font-size: clamp(2.75rem, 1.5rem + 4.4vw, 4.75rem);
-  font-weight: 600;
-  font-variation-settings: 'wdth' 80;
-  letter-spacing: -0.045em;
+  font-weight: 700;
+  letter-spacing: -0.035em;
   line-height: 0.95;
 }
 
@@ -33,7 +32,6 @@
   margin: 1.125rem 0 0;
   color: var(--text-muted);
   font-size: clamp(1.125rem, 1rem + 0.45vw, 1.375rem);
-  font-variation-settings: 'wdth' 92;
   letter-spacing: -0.01em;
   line-height: 1.35;
 }
@@ -107,8 +105,7 @@
   margin: 0 0 2.5rem;
   font-size: 1.625rem;
   font-weight: 600;
-  font-variation-settings: 'wdth' 86;
-  letter-spacing: -0.025em;
+  letter-spacing: -0.02em;
   line-height: 1.2;
 }
 
@@ -160,7 +157,6 @@
   padding-top: 0.1875rem;
   color: var(--text-subtle);
   font-size: 0.875rem;
-  font-variant-numeric: tabular-nums;
   line-height: 1.55;
   text-align: right;
 }
@@ -168,6 +164,11 @@
 .meta p {
   margin: 0;
   white-space: nowrap;
+}
+
+/* Tabular figures on the date line only: in some faces tnum also widens commas. */
+.meta p:first-child {
+  font-variant-numeric: tabular-nums;
 }
 
 /* Logo and file tiles */

@@ -9,8 +9,9 @@ export const profile = {
   role: 'Junior at Carnegie Mellon University studying AI and Applied Math',
   // The short introduction under your name. Two or three sentences reads best.
   intro: [
-    'I build AI agent systems and the tools around them. This summer at S&P Global I built multi-agent workflows and MCP servers that let senior leadership query millions of error logs in plain English.',
-    'Before that, at AnthrAI, I shipped a platform that runs thousands of persona-driven browser agents to test web interfaces. At CMU I study computational and applied mathematics and artificial intelligence.',
+    'Hi, I\'m Andrew! I\'m from Toronto and now live in Pittsburgh, where I study AI and applied math at Carnegie Mellon. I like building full-stack applications and designing data pipelines for AI systems.',
+    'Last summer at S&P Global, I built a multi-agent workflow that let teams query application logs and latency data from Databricks and Splunk using natural language and visualize reliability trends. Before that, I helped automate A/B testing at AnthrAI by building browser agents with Playwright. Teams used them to compare how various simulated user personas navigated different versions of the same website.',
+    'Outside of class and work, I enjoy bouldering, watching soccer, and trying new restaurants. I\'m always happy to trade food recs!'
   ],
   email: 'ajhua@andrew.cmu.edu',
   github: 'https://github.com/ajhua-dotcom',
