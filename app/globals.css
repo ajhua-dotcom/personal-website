@@ -1,0 +1,158 @@
+:root {
+  /* Surfaces: a violet-leaning graphite, so the periwinkle accent belongs to it. */
+  --bg: #121219;
+  --bg-sidebar: #17171f;
+  --bg-raised: #1d1d27;
+  --bg-active: #232338;
+  --line: #262632;
+  --line-strong: #34344a;
+
+  /* Text. --text-faint is for rules and markers only, never for reading. */
+  --text: #e8e8f0;
+  --text-body: #d3d3de;
+  --text-muted: #a6a6b8;
+  --text-subtle: #8c8ca0;
+  --text-faint: #565670;
+
+  --accent: #aba8ff;
+  --accent-hover: #c4c2ff;
+  --on-accent: #121219;
+
+  /* File types in the explorer. */
+  --folder: #9592f0;
+  --file-md: #9393a8;
+  --file-tsx: #62c9ec;
+  --file-c: #8eb4e3;
+  --file-py: #e6c65c;
+  --file-json: #e39a62;
+  --file-pdf: #ee8e8e;
+
+  /* Lines on the skills map, drawn from the same hues as the file types. */
+  --route-amber: #e6c65c;
+  --route-violet: #aba8ff;
+  --route-cyan: #62c9ec;
+  --route-coral: #ee8e8e;
+
+  --gutter: clamp(1.25rem, 5vw, 4.5rem);
+  --content-max: 74rem;
+
+  color-scheme: dark;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  background: var(--bg);
+  scroll-behavior: smooth;
+  /* Keeps anchor jumps and keyboard focus clear of the sticky path bar. */
+  scroll-padding-top: 3rem;
+  -webkit-text-size-adjust: 100%;
+}
+
+a,
+button {
+  touch-action: manipulation;
+  -webkit-tap-highlight-color: rgb(171 168 255 / 0.14);
+}
+
+html[data-drawer='open'] {
+  overflow: hidden;
+}
+
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--text);
+  font-family: var(--font-sans), system-ui, sans-serif;
+  font-size: 1rem;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+h1,
+h2,
+h3 {
+  text-wrap: balance;
+}
+
+p,
+li,
+dd {
+  text-wrap: pretty;
+}
+
+a {
+  color: inherit;
+}
+
+:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+  border-radius: 4px;
+}
+
+::selection {
+  background: rgb(171 168 255 / 0.3);
+}
+
+svg {
+  flex: none;
+}
+
+/* Layout ------------------------------------------------------------------ */
+
+.workspace {
+  display: grid;
+  grid-template-columns: 17.5rem minmax(0, 1fr);
+  min-height: 100dvh;
+}
+
+.workspace-main {
+  min-width: 0;
+}
+
+/* Centred in the editor pane, so spare width splits evenly instead of pooling on the right. */
+.content {
+  max-width: var(--content-max);
+  margin-inline: auto;
+  padding: 0 var(--gutter);
+}
+
+.content:focus {
+  outline: none;
+}
+
+.skip-link {
+  position: fixed;
+  top: 0.75rem;
+  left: 0.75rem;
+  z-index: 100;
+  padding: 0.5rem 0.875rem;
+  border-radius: 6px;
+  background: var(--accent);
+  color: var(--on-accent);
+  font-weight: 600;
+  text-decoration: none;
+  transform: translateY(-200%);
+}
+
+.skip-link:focus {
+  transform: none;
+}
+
+@media (max-width: 59.99rem) {
+  .workspace {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+}

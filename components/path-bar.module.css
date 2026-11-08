@@ -1,0 +1,126 @@
+.bar {
+  position: sticky;
+  top: 0;
+  z-index: 20;
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  height: 3rem;
+  /* Line the breadcrumb up with the centred content column below (max-width in globals.css). */
+  padding: 0 max(var(--gutter), calc((100% - var(--content-max)) / 2 + var(--gutter)));
+  border-bottom: 1px solid var(--line);
+  background: color-mix(in oklab, var(--bg) 86%, transparent);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  font-family: var(--font-mono), ui-monospace, monospace;
+  font-size: 0.8125rem;
+  font-variation-settings: 'wdth' 87.5;
+  font-weight: 380;
+}
+
+.menu {
+  display: none;
+}
+
+.path {
+  display: flex;
+  flex: 1;
+  align-items: center;
+  min-width: 0;
+  margin: 0;
+  overflow: hidden;
+  white-space: nowrap;
+}
+
+.segment {
+  color: var(--text-subtle);
+  text-decoration: none;
+  transition: color 120ms ease;
+}
+
+.segment:hover {
+  color: var(--text);
+}
+
+.current {
+  overflow: hidden;
+  color: var(--text);
+  text-overflow: ellipsis;
+}
+
+.sep {
+  padding: 0 0.5em;
+  color: var(--text-faint);
+}
+
+.resume {
+  display: inline-flex;
+  flex: none;
+  align-items: center;
+  gap: 0.4rem;
+  height: 2rem;
+  padding: 0 0.75rem;
+  border: 1px solid var(--line-strong);
+  border-radius: 6px;
+  color: var(--text);
+  text-decoration: none;
+  transition: border-color 150ms ease, background-color 150ms ease;
+}
+
+.resume:hover {
+  border-color: var(--accent);
+  background: var(--bg-raised);
+}
+
+@media (max-width: 59.99rem) {
+  .bar {
+    gap: 0.5rem;
+    padding-left: 0.5rem;
+  }
+
+  .menu {
+    display: inline-flex;
+    flex: none;
+    align-items: center;
+    gap: 0.5rem;
+    height: 2.75rem;
+    padding: 0 0.75rem;
+    border: 0;
+    border-radius: 6px;
+    background: none;
+    color: var(--text);
+    font: inherit;
+    font-variation-settings: inherit;
+    cursor: pointer;
+  }
+
+  .menu:hover {
+    background: var(--bg-raised);
+  }
+
+  /* The root folder is implied on small screens; keep the last two segments. */
+  .root,
+  .rootSep {
+    display: none;
+  }
+
+  .resume {
+    height: 2.75rem;
+  }
+}
+
+@media (max-width: 27.49rem) {
+  .resume span {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+    clip-path: inset(50%);
+  }
+
+  .resume {
+    width: 2.75rem;
+    justify-content: center;
+    padding: 0;
+  }
+}

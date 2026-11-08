@@ -1,0 +1,298 @@
+.explorer {
+  --row-h: 1.875rem;
+  --indent: 1rem;
+  --twisty: 1.25rem;
+
+  position: sticky;
+  top: 0;
+  height: 100dvh;
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  padding: 0 0.5rem 2rem;
+  background: var(--bg-sidebar);
+  border-right: 1px solid var(--line);
+  font-family: var(--font-mono), ui-monospace, monospace;
+  font-size: 0.8125rem;
+  font-variation-settings: 'wdth' 87.5;
+  font-weight: 380;
+  scrollbar-width: thin;
+  scrollbar-color: var(--line-strong) transparent;
+}
+
+.header {
+  display: flex;
+  align-items: center;
+  gap: 0.875rem;
+  height: 3rem;
+  margin: 0 -0.5rem 0.625rem;
+  padding: 0 1rem;
+  border-bottom: 1px solid var(--line);
+}
+
+.lights {
+  display: flex;
+  gap: 0.375rem;
+}
+
+.lights i {
+  width: 0.625rem;
+  height: 0.625rem;
+  border-radius: 50%;
+  background: #ff5f57;
+}
+
+.lights i:nth-child(2) {
+  background: #febc2e;
+}
+
+.lights i:nth-child(3) {
+  background: #28c840;
+}
+
+.title {
+  color: var(--text-subtle);
+}
+
+.close {
+  display: none;
+}
+
+.list {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+/* Rows ------------------------------------------------------------------ */
+
+.row,
+.folderRow {
+  position: relative;
+  display: flex;
+  align-items: center;
+  min-height: var(--row-h);
+  padding-left: calc(var(--depth) * var(--indent) + 0.25rem);
+  border-radius: 6px;
+  color: var(--text-muted);
+  animation: unfold 340ms cubic-bezier(0.2, 0.7, 0.2, 1) both;
+  animation-delay: calc(var(--i) * 32ms + 120ms);
+}
+
+.row {
+  gap: 0.5rem;
+  padding-right: 0.5rem;
+  text-decoration: none;
+  transition: background-color 120ms ease, color 120ms ease;
+}
+
+.row:hover,
+.folderRow:hover {
+  background: var(--bg-raised);
+  color: var(--text);
+}
+
+.row[aria-current='location'],
+.folderRow[data-active] {
+  background: var(--bg-active);
+  color: var(--text);
+  font-weight: 500;
+}
+
+.row[aria-current='location']::before,
+.folderRow[data-active]::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0.375rem;
+  bottom: 0.375rem;
+  width: 2px;
+  border-radius: 1px;
+  background: var(--accent);
+}
+
+/* A collapsed folder that holds the section in view. */
+.folderRow[data-holds-active] {
+  color: var(--text);
+}
+
+.spacer,
+.twisty {
+  flex: none;
+  width: var(--twisty);
+}
+
+/* Cancel the row gap so file icons line up with folder icons. */
+.spacer {
+  margin-right: -0.5rem;
+}
+
+.twisty {
+  display: inline-flex;
+  align-self: stretch;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+  border: 0;
+  background: none;
+  color: var(--text-subtle);
+  cursor: pointer;
+}
+
+.chevron {
+  transition: transform 160ms ease;
+}
+
+.twisty[aria-expanded='true'] .chevron,
+.folderLink[aria-expanded='true'] .chevron {
+  transform: rotate(90deg);
+}
+
+.folderLink {
+  display: flex;
+  flex: 1;
+  align-self: stretch;
+  align-items: center;
+  gap: 0.5rem;
+  min-width: 0;
+  padding: 0 0.5rem 0 0;
+  border: 0;
+  background: none;
+  color: inherit;
+  font: inherit;
+  font-variation-settings: inherit;
+  text-align: left;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+/* The links folder is one button, so its chevron sits inside it. */
+.folderLink .twisty {
+  margin-right: -0.5rem;
+}
+
+.icon {
+  flex: none;
+}
+
+.name {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+/* Folder contents --------------------------------------------------------- */
+
+.children {
+  position: relative;
+  display: grid;
+  grid-template-rows: 1fr;
+  transition: grid-template-rows 200ms ease;
+}
+
+.children[data-open='false'] {
+  grid-template-rows: 0fr;
+  visibility: hidden;
+  transition: grid-template-rows 200ms ease, visibility 0s 200ms;
+}
+
+.childrenInner {
+  min-height: 0;
+  overflow: hidden;
+}
+
+/* Indent guide, centred under the parent folder's chevron. */
+.children::before {
+  content: '';
+  position: absolute;
+  top: 0.125rem;
+  bottom: 0.125rem;
+  left: calc(var(--depth) * var(--indent) + 0.25rem + var(--twisty) / 2);
+  width: 1px;
+  background: var(--line-strong);
+  pointer-events: none;
+}
+
+@keyframes unfold {
+  from {
+    opacity: 0;
+    transform: translateX(-6px);
+  }
+}
+
+/* Narrow screens: the explorer becomes a drawer --------------------------- */
+
+.backdrop {
+  display: none;
+}
+
+@media (max-width: 59.99rem) {
+  .explorer {
+    --row-h: 2.75rem;
+    --twisty: 2rem;
+
+    position: fixed;
+    inset: 0 auto 0 0;
+    z-index: 40;
+    width: min(20rem, 86vw);
+    font-size: 0.875rem;
+    transform: translateX(-100%);
+    visibility: hidden;
+    transition: transform 220ms cubic-bezier(0.4, 0, 1, 1), visibility 0s 220ms;
+  }
+
+  .explorer[data-open='true'] {
+    transform: none;
+    visibility: visible;
+    transition: transform 260ms cubic-bezier(0.2, 0.7, 0.2, 1);
+  }
+
+  .close {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 2.75rem;
+    height: 2.75rem;
+    margin: 0 -0.75rem 0 auto;
+    padding: 0;
+    border: 0;
+    border-radius: 6px;
+    background: none;
+    color: var(--text-muted);
+    cursor: pointer;
+  }
+
+  .close:hover {
+    color: var(--text);
+  }
+
+  .backdrop {
+    display: block;
+    position: fixed;
+    inset: 0;
+    z-index: 30;
+    background: rgb(6 6 10 / 0.62);
+    animation: fade 200ms ease both;
+  }
+}
+
+@keyframes fade {
+  from {
+    opacity: 0;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .row,
+  .folderRow,
+  .backdrop {
+    animation: none;
+  }
+
+  .explorer,
+  .explorer[data-open='true'],
+  .children,
+  .children[data-open='false'],
+  .chevron {
+    transition: none;
+  }
+}
