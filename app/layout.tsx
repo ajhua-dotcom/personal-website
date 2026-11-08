@@ -16,7 +16,7 @@ const mono = Martian_Mono({
 });
 
 export const metadata: Metadata = {
-  title: 'Andrew Hua, software engineer',
+  title: 'Andrew Hua',
   description:
     'Junior at Carnegie Mellon University studying AI and Applied Math. Software engineering experience at S&P Global and AnthrAI building agent systems, MCP tooling, and RAG pipelines.',
 };
