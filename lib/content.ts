@@ -67,7 +67,6 @@ export const experience: Experience[] = [
 export type Project = {
   id: string;
   title: string;
-  date: string;
   language: FileType;
   languageLabel: string;
   points: string[];
@@ -77,7 +76,6 @@ export const projects: Project[] = [
   {
     id: 'malloc',
     title: 'Dynamic memory allocator',
-    date: 'Mar 2026',
     language: 'c',
     languageLabel: 'C',
     points: [
@@ -88,7 +86,6 @@ export const projects: Project[] = [
   {
     id: 'rnn-lm',
     title: 'RNN language model with self-attention',
-    date: 'Nov 2025',
     language: 'py',
     languageLabel: 'Python',
     points: [

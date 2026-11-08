@@ -146,7 +146,6 @@ export function ProjectsSection() {
                 <h3 className={s.entryTitle}>{project.title}</h3>
               </div>
               <div className={s.meta}>
-                <p>{project.date}</p>
                 <p>{project.languageLabel}</p>
               </div>
             </header>
