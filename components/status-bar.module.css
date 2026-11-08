@@ -1,0 +1,41 @@
+/* Editor status bar, pinned to the bottom of the pane. */
+.bar {
+  position: sticky;
+  bottom: 0;
+  z-index: 20;
+  display: flex;
+  align-items: center;
+  gap: 1.25rem;
+  height: 1.75rem;
+  padding: 0 1rem;
+  border-top: 1px solid var(--line);
+  background: color-mix(in oklab, var(--bg-sidebar) 92%, transparent);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  color: var(--text-subtle);
+  font-family: var(--font-mono), ui-monospace, monospace;
+  font-size: 0.75rem;
+  font-variation-settings: 'wdth' 87.5;
+  font-weight: 380;
+  white-space: nowrap;
+}
+
+.item {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.375rem;
+}
+
+.branch {
+  color: var(--accent);
+}
+
+.spacer {
+  flex: 1;
+}
+
+@media (max-width: 47.99rem) {
+  .bar {
+    display: none;
+  }
+}

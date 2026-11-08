@@ -10,8 +10,8 @@ export const profile = {
   // The short introduction under your name. Two or three sentences reads best.
   intro: [
     'Hi, I\'m Andrew! I\'m from Toronto and now live in Pittsburgh, where I study AI and applied math at Carnegie Mellon. I like building full-stack applications and designing data pipelines for AI systems.',
-    'Last summer at S&P Global, I built a multi-agent workflow that let teams query application logs and latency data from Databricks and Splunk using natural language and visualize reliability trends. Before that, I helped automate A/B testing at AnthrAI by building browser agents with Playwright. Teams used them to compare how various simulated user personas navigated different versions of the same website.',
-    'Outside of class and work, I enjoy bouldering, watching soccer, and trying new restaurants. I\'m always happy to trade food recs!'
+    // 'Last summer at S&P Global, I built a multi-agent workflow that let teams query application logs and latency data from Databricks and Splunk using natural language and visualize reliability trends. Before that, I helped automate A/B testing at AnthrAI by building browser agents with Playwright. Teams used them to compare how various simulated user personas navigated different versions of the same website.',
+    'Outside of class and work, I enjoy bouldering, watching soccer, and trying new restaurants. I\'m always open to trade food recs!'
   ],
   email: 'ajhua@andrew.cmu.edu',
   github: 'https://github.com/ajhua-dotcom',
@@ -137,6 +137,15 @@ export const awards = [
     result: '4× qualifier',
     event: 'American Invitational Mathematics Examination (AIME)',
   },
+  {
+    result: 'Global Top Scorer',
+    event: 'PhysicsBowl Contest',
+  },
+  {
+    result: 'Qualifier',
+    event: 'Canadian Mathematical Olympiad Repechage',
+    note: 'Top 100 score on the Canadian Open Mathematics Challenge',
+  },
 ];
 
 // Each group is drawn as one line on the skills map, in its own color.
@@ -181,8 +190,10 @@ export type TreeNode =
 
 export const ROOT = 'andrew-hua';
 
+// Keep this in the same order as the sections in app/page.tsx: the scroll tracking follows it.
 export const tree: TreeNode[] = [
   { kind: 'file', id: 'readme', name: 'README.md', type: 'md' },
+  { kind: 'file', id: 'skills', name: 'skills.json', type: 'json' },
   {
     kind: 'folder',
     id: 'experience',
@@ -192,6 +203,7 @@ export const tree: TreeNode[] = [
       { kind: 'file', id: 'anthrai', name: 'anthrai.md', type: 'md' },
     ],
   },
+  { kind: 'file', id: 'education', name: 'education.md', type: 'md' },
   {
     kind: 'folder',
     id: 'projects',
@@ -201,9 +213,7 @@ export const tree: TreeNode[] = [
       { kind: 'file', id: 'rnn-lm', name: 'rnn-lm.py', type: 'py' },
     ],
   },
-  { kind: 'file', id: 'education', name: 'education.md', type: 'md' },
   { kind: 'file', id: 'awards', name: 'awards.md', type: 'md' },
-  { kind: 'file', id: 'skills', name: 'skills.json', type: 'json' },
   {
     kind: 'folder',
     id: 'links',

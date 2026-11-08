@@ -18,11 +18,100 @@
 
 .readme {
   padding-top: clamp(3rem, 14vh, 9rem);
+  container-type: inline-size;
+}
+
+/* Intro text, with the SGD figure beside it when there is room and below it
+   when there isn't. Sized against the intro's own width, not the window. */
+.hero {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  row-gap: 2.5rem;
+}
+
+.heroText {
+  min-width: 0;
+}
+
+/* The figure sits in a small panel, styled like the section panels below, with its
+   caption as a footer strip. */
+.art {
+  width: min(20rem, 100%);
+  margin: 0;
+  overflow: hidden;
+  border: 1px solid var(--panel-line);
+  border-radius: 16px;
+  background: var(--panel-glass);
+  box-shadow: inset 0 1px 0 rgb(255 255 255 / 0.035);
+}
+
+.art canvas {
+  display: block;
+  width: 100%;
+  aspect-ratio: 1;
+  cursor: grab;
+  touch-action: pan-y;
+}
+
+.art canvas:active {
+  cursor: grabbing;
+}
+
+.art figcaption {
+  display: grid;
+  padding: 0.5625rem 0.75rem 0.625rem;
+  border-top: 1px solid var(--panel-line);
+  color: var(--text-subtle);
+  font-family: var(--font-mono), ui-monospace, monospace;
+  font-size: 0.75rem;
+  font-variation-settings: 'wdth' 87.5;
+  text-align: center;
+  white-space: nowrap;
+}
+
+/* The label and the "drag to rotate" hint share one line; the hint takes the label's
+   place while a mouse or trackpad hovers the figure. On touch screens vertical swipes
+   keep scrolling the page, so the figure turns sideways only and the hint stays hidden. */
+.art figcaption > span {
+  grid-area: 1 / 1;
+  transition: opacity 200ms ease;
+}
+
+.art figcaption > span + span {
+  display: none;
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .art figcaption > span + span {
+    display: block;
+    color: var(--text-muted);
+    opacity: 0;
+  }
+
+  .art:hover figcaption > span:first-child {
+    opacity: 0;
+  }
+
+  .art:hover figcaption > span + span {
+    opacity: 1;
+  }
+}
+
+@container (min-width: 56rem) {
+  .hero {
+    grid-template-columns: minmax(0, 1fr) clamp(17rem, 34cqi, 27rem);
+    column-gap: clamp(1.5rem, 4cqi, 3.5rem);
+    align-items: center;
+  }
+
+  .art {
+    width: 100%;
+  }
 }
 
 .name {
   margin: 0;
-  font-size: clamp(2.75rem, 1.5rem + 4.4vw, 4.75rem);
+  font-size: clamp(2.5rem, 1.4rem + 3.8vw, 4.125rem);
   font-weight: 700;
   letter-spacing: -0.035em;
   line-height: 0.95;
@@ -31,7 +120,7 @@
 .role {
   margin: 1.125rem 0 0;
   color: var(--text-muted);
-  font-size: clamp(1.125rem, 1rem + 0.45vw, 1.375rem);
+  font-size: clamp(1rem, 0.92rem + 0.35vw, 1.1875rem);
   letter-spacing: -0.01em;
   line-height: 1.35;
 }
@@ -43,7 +132,7 @@
   gap: 1rem;
   max-width: 38em;
   margin-top: 2.25rem;
-  font-size: clamp(1.125rem, 0.8rem + 0.35vw, 1.25rem);
+  font-size: clamp(1rem, 0.78rem + 0.3vw, 1.125rem);
 }
 
 .intro p {
@@ -68,10 +157,10 @@
   min-height: 2.75rem;
   padding: 0 1rem;
   border-radius: 8px;
-  font-size: 0.9375rem;
+  font-size: 0.875rem;
   font-weight: 500;
   text-decoration: none;
-  transition: background-color 150ms ease, border-color 150ms ease, color 150ms ease;
+  transition: background-color 150ms ease, border-color 150ms ease, color 150ms ease, box-shadow 200ms ease;
 }
 
 .primary {
@@ -82,6 +171,7 @@
 
 .primary:hover {
   background: var(--accent-hover);
+  box-shadow: 0 0 0 1px rgb(171 168 255 / 0.35), 0 8px 28px -8px rgb(171 168 255 / 0.65);
 }
 
 .secondary {
@@ -96,14 +186,26 @@
 
 /* Sections ------------------------------------------------------------------ */
 
+/* Each section is a panel on the canvas. The intro above stays open on the grid. */
 .section {
-  margin-top: clamp(5rem, 12vh, 8rem);
+  margin-top: 1.5rem;
+  padding: clamp(1.5rem, 0.75rem + 2.4vw, 2.75rem);
+  border: 1px solid var(--panel-line);
+  border-radius: 20px;
+  background: var(--panel-glass);
+  font-size: 0.9375rem;
+  /* A hairline of light along the top edge gives the panel a little lift. */
+  box-shadow: inset 0 1px 0 rgb(255 255 255 / 0.035);
+}
+
+.readme + .section {
+  margin-top: clamp(3.5rem, 9vh, 5.5rem);
 }
 
 .heading {
   position: relative;
-  margin: 0 0 2.5rem;
-  font-size: 1.625rem;
+  margin: 0 0 2.25rem;
+  font-size: 1.4375rem;
   font-weight: 600;
   letter-spacing: -0.02em;
   line-height: 1.2;
@@ -141,7 +243,7 @@
 
 .entryTitle {
   margin: 0;
-  font-size: 1.1875rem;
+  font-size: 1.0625rem;
   font-weight: 600;
   letter-spacing: -0.012em;
   line-height: 1.35;
@@ -156,7 +258,7 @@
   flex: none;
   padding-top: 0.1875rem;
   color: var(--text-subtle);
-  font-size: 0.875rem;
+  font-size: 0.8125rem;
   line-height: 1.55;
   text-align: right;
 }
@@ -205,7 +307,7 @@
   border: 1px solid var(--line-strong);
   background: var(--bg-raised);
   font-family: var(--font-mono), ui-monospace, monospace;
-  font-size: 0.8125rem;
+  font-size: 0.75rem;
   font-variation-settings: 'wdth' 87.5;
   font-weight: 500;
 }
@@ -243,7 +345,7 @@
   max-width: calc(var(--indent) + 1.25rem + 44em);
   margin: 1.125rem 0 0;
   padding: 0 0 0 var(--indent);
-  font-size: clamp(1.0625rem, 0.75rem + 0.35vw, 1.1875rem);
+  font-size: clamp(0.9375rem, 0.7rem + 0.3vw, 1.0625rem);
   list-style: none;
 }
 
@@ -293,7 +395,7 @@
 .tableRow dt {
   padding-top: 0.125rem;
   color: var(--text-subtle);
-  font-size: 0.875rem;
+  font-size: 0.8125rem;
 }
 
 .tableRow dd {
@@ -329,7 +431,7 @@
 .note {
   margin-top: 0.125rem;
   color: var(--text-subtle);
-  font-size: 0.9375rem;
+  font-size: 0.875rem;
 }
 
 /* Skills map ---------------------------------------------------------------- */
@@ -355,7 +457,7 @@
   margin: 0;
   /* Centre the badge on the line running through the stops. */
   padding-top: calc((var(--node) - 1.75rem) / 2);
-  font-size: 0.875rem;
+  font-size: 0.8125rem;
   font-weight: 500;
   line-height: 1;
 }
@@ -408,6 +510,7 @@
   right: 0;
   height: 3px;
   background: var(--route);
+  box-shadow: 0 0 10px color-mix(in oklab, var(--route) 35%, transparent);
 }
 
 /* The line starts and ends at its first and last stops. */
@@ -433,19 +536,23 @@
   height: var(--node);
   border: 2px solid var(--route);
   border-radius: 50%;
-  background: var(--bg);
+  background: var(--panel);
   color: var(--text);
+  box-shadow: 0 0 18px -4px color-mix(in oklab, var(--route) 55%, transparent);
 }
 
 /* Termini get a filled ring, as on a transit map. */
 .stop:first-child .stopNode,
 .stop:last-child .stopNode {
-  box-shadow: 0 0 0 3px var(--bg), 0 0 0 5px color-mix(in oklab, var(--route) 45%, transparent);
+  box-shadow:
+    0 0 0 3px var(--panel),
+    0 0 0 5px color-mix(in oklab, var(--route) 45%, transparent),
+    0 0 22px -2px color-mix(in oklab, var(--route) 45%, transparent);
 }
 
 .stopName {
   color: var(--text-muted);
-  font-size: 0.8125rem;
+  font-size: 0.75rem;
   line-height: 1.3;
   text-align: center;
   white-space: nowrap;
@@ -458,11 +565,10 @@
   flex-wrap: wrap;
   justify-content: space-between;
   gap: 0.5rem 2rem;
-  margin-top: clamp(6rem, 16vh, 10rem);
-  padding: 1.75rem 0 2.5rem;
-  border-top: 1px solid var(--line);
+  margin-top: 2.5rem;
+  padding: 0 0.25rem 2.5rem;
   color: var(--text-subtle);
-  font-size: 0.875rem;
+  font-size: 0.8125rem;
 }
 
 .footer p {
@@ -482,6 +588,12 @@
 /* Responsive ---------------------------------------------------------------- */
 
 @media (max-width: 47.99rem) {
+  .section {
+    margin-top: 1rem;
+    padding: 1.25rem;
+    border-radius: 16px;
+  }
+
   /* Dates and place drop under the title; text runs the full width. */
   .entryHead {
     flex-wrap: wrap;

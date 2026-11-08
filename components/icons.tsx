@@ -89,6 +89,28 @@ export function ExternalIcon({ className }: IconProps) {
   );
 }
 
+export function BranchIcon({ className }: IconProps) {
+  return (
+    <svg className={className} width="12" height="12" viewBox="0 0 16 16" aria-hidden="true">
+      <g fill="none" stroke="currentColor" strokeWidth="1.5">
+        <circle cx="4.5" cy="3.5" r="1.75" />
+        <circle cx="4.5" cy="12.5" r="1.75" />
+        <circle cx="11.5" cy="5.5" r="1.75" />
+        <path d="M4.5 5.25v5.5M11.5 7.25c0 2.5-3 2.5-5.5 4" strokeLinecap="round" />
+      </g>
+    </svg>
+  );
+}
+
+export function ClockIcon({ className }: IconProps) {
+  return (
+    <svg className={className} width="12" height="12" viewBox="0 0 16 16" aria-hidden="true">
+      <circle cx="8" cy="8" r="6.25" fill="none" stroke="currentColor" strokeWidth="1.5" />
+      <path d="M8 4.75V8l2.25 1.5" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" />
+    </svg>
+  );
+}
+
 export function SidebarIcon({ className }: IconProps) {
   return (
     <svg className={className} width="18" height="18" viewBox="0 0 18 18" aria-hidden="true">

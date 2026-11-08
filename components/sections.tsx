@@ -8,6 +8,7 @@ import {
   LinkedInIcon,
   MailIcon,
 } from './icons';
+import { SgdLandscape } from './sgd';
 import { SkillIcon } from './skill-icons';
 import s from './sections.module.css';
 
@@ -50,41 +51,46 @@ function Points({ items }: { items: string[] }) {
 export function Readme() {
   return (
     <section id="readme" className={s.readme} aria-labelledby="readme-title">
-      <h1 id="readme-title" className={s.name}>
-        {profile.name}
-      </h1>
-      <p className={s.role}>{profile.role}</p>
-      <div className={s.intro}>
-        {profile.intro.map((paragraph) => (
-          <p key={paragraph.slice(0, 24)}>{paragraph}</p>
-        ))}
+      <div className={s.hero}>
+        <div className={s.heroText}>
+          <h1 id="readme-title" className={s.name}>
+            {profile.name}
+          </h1>
+          <p className={s.role}>{profile.role}</p>
+          <div className={s.intro}>
+            {profile.intro.map((paragraph) => (
+              <p key={paragraph.slice(0, 24)}>{paragraph}</p>
+            ))}
+          </div>
+          <ul className={s.actions} role="list">
+            <li>
+              <a className={`${s.button} ${s.primary}`} href={profile.resume} target="_blank" rel="noopener noreferrer">
+                <DocumentIcon />
+                Resume (PDF)
+              </a>
+            </li>
+            <li>
+              <a className={`${s.button} ${s.secondary}`} href={profile.github} target="_blank" rel="noopener noreferrer">
+                <GitHubIcon />
+                GitHub
+              </a>
+            </li>
+            <li>
+              <a className={`${s.button} ${s.secondary}`} href={profile.linkedin} target="_blank" rel="noopener noreferrer">
+                <LinkedInIcon />
+                LinkedIn
+              </a>
+            </li>
+            <li>
+              <a className={`${s.button} ${s.secondary}`} href={`mailto:${profile.email}`}>
+                <MailIcon />
+                Email
+              </a>
+            </li>
+          </ul>
+        </div>
+        <SgdLandscape className={s.art} />
       </div>
-      <ul className={s.actions} role="list">
-        <li>
-          <a className={`${s.button} ${s.primary}`} href={profile.resume} target="_blank" rel="noopener noreferrer">
-            <DocumentIcon />
-            Resume (PDF)
-          </a>
-        </li>
-        <li>
-          <a className={`${s.button} ${s.secondary}`} href={profile.github} target="_blank" rel="noopener noreferrer">
-            <GitHubIcon />
-            GitHub
-          </a>
-        </li>
-        <li>
-          <a className={`${s.button} ${s.secondary}`} href={profile.linkedin} target="_blank" rel="noopener noreferrer">
-            <LinkedInIcon />
-            LinkedIn
-          </a>
-        </li>
-        <li>
-          <a className={`${s.button} ${s.secondary}`} href={`mailto:${profile.email}`}>
-            <MailIcon />
-            Email
-          </a>
-        </li>
-      </ul>
     </section>
   );
 }
