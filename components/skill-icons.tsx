@@ -3,15 +3,16 @@
 // Only the icons imported here end up in the build. This module is used by server components.
 import {
   siAngular,
+  siC,
   siCplusplus,
   siDatabricks,
   siDocker,
   siGit,
-  siKubernetes,
   siLinux,
   siModelcontextprotocol,
   siMongodb,
   siNextdotjs,
+  siNodedotjs,
   siNumpy,
   siOpenjdk,
   siPandas,
@@ -19,11 +20,13 @@ import {
   siPython,
   siPytorch,
   siReact,
+  siSplunk,
   siTypescript,
 } from 'simple-icons';
 
 const brandPaths: Record<string, string> = {
   Python: siPython.path,
+  C: siC.path,
   TypeScript: siTypescript.path,
   Java: siOpenjdk.path,
   'C++': siCplusplus.path,
@@ -34,10 +37,11 @@ const brandPaths: Record<string, string> = {
   Databricks: siDatabricks.path,
   MongoDB: siMongodb.path,
   Postgres: siPostgresql.path,
+  Splunk: siSplunk.path,
   Docker: siDocker.path,
-  Kubernetes: siKubernetes.path,
   Git: siGit.path,
   Linux: siLinux.path,
+  'Node.js': siNodedotjs.path,
   'Next.js': siNextdotjs.path,
   React: siReact.path,
   Angular: siAngular.path,
@@ -69,6 +73,14 @@ const conceptIcons: Record<string, React.ReactNode> = {
       <path d="M12.5 2.5v6h6" />
       <circle cx="16" cy="16" r="3.25" />
       <path d="m18.4 18.4 3.1 3.1" />
+    </g>
+  ),
+  // A browser window with a pointer: browser automation (Simple Icons has no Playwright mark).
+  Playwright: (
+    <g {...stroke}>
+      <rect x="2.5" y="3.5" width="19" height="15" rx="2" />
+      <path d="M2.5 8h19" />
+      <path d="m12 11 6.5 2.5-2.75 1.25L14.5 17.5Z" />
     </g>
   ),
   // A spark: generative models.

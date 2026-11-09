@@ -42,9 +42,9 @@ export const experience: Experience[] = [
     start: 'Jun 2026',
     end: 'Aug 2026',
     points: [
-      'Built a multi-agent workflow (15+ agents) that produces business insights and data visualizations on the reliability of High Value Ratings applications, used by 2M+ external users and 40k+ employees. Cut the division-wide application error rate by 6%.',
-      'Built MCP tools, servers, and conversational agents that let the CTO and senior leadership search 3M+ error logs, latency events, and problem tickets with natural-language queries, replacing manual pulls from Databricks and Splunk Observability Cloud.',
-      'Built a repository scanner using an internal LLM and a RAG pipeline over 600+ pages of Oracle, Postgres, and MongoDB best-practice documentation, flagging dangerous, inefficient, and unreliable database queries before deployment.',
+      'Built MCP servers and a conversational agent from scratch (Python, internal LLM) that let the CTO and senior leadership query 3M+ error logs, latency events, and tickets directly, cutting turnaround from days or weeks of manual Databricks and Splunk analysis to seconds.',
+      'Re-architected the agent into a multi-agent workflow (Python, AWS Strands Agents) that automates reliability analysis and visualization for credit ratings applications serving 2M+ users and 40k+ employees. Leadership uses it to set SRE and PM team priorities.',
+      'Built an LLM-based static analyzer (Python, RAG) that checks database queries against 600+ pages of Oracle, Postgres, and MongoDB best practices, flagging unsafe or inefficient patterns in CI through an internal dev platform.',
     ],
   },
   {
@@ -52,14 +52,14 @@ export const experience: Experience[] = [
     company: 'AnthrAI',
     url: 'https://www.anthrai.com',
     logo: anthraiLogo,
-    role: 'Software Engineer Intern',
+    role: 'Software Engineer Intern (part-time, remote)',
     location: 'San Francisco, CA',
     start: 'Dec 2025',
-    end: 'Jun 2026',
+    end: 'May 2026',
     points: [
-      'Built AI web-navigation agents that simulate 6 configurable user personas with over 90% behavioral similarity to real users, enabling automated hypothesis testing on third-party web interfaces.',
-      'Shipped an end-to-end UI/UX testing platform (Next.js, Vercel) that orchestrated 12k+ automated agents across 400+ A/B and hypothesis-test batches for 1,000+ users.',
-      'Developed KPI and performance metrics in Python and SQL across 1,200+ simulation batches, cutting simulation failures by 25% and agent navigation steps and API costs by 40%.',
+      'Built web-navigation agents (Playwright, Gemini) that parse the DOM and accessibility tree and plan multi-step actions, simulating 6 configurable user personas with 90% action-sequence similarity to real users.',
+      'Architected the testing platform’s orchestration layer (Node.js, Redis, Docker), running 50+ concurrent headless-browser agents with retries and per-run isolation to execute 12k+ agent runs across 800+ A/B and hypothesis-test batches.',
+      'Developed an agent evaluation harness (Python, SQL) of synthetic websites with varied interactive components and layouts to test navigation reasoning. Traced failures to missed components and action loops, then added state recovery and loop detection, cutting failures 25% and agent steps and API cost 40%.',
     ],
   },
 ];
@@ -79,7 +79,7 @@ export const projects: Project[] = [
     language: 'c',
     languageLabel: 'C',
     points: [
-      'Implemented malloc, free, realloc, and calloc, evolving the free-block structure from an implicit list to a segregated free list indexed by size class. Throughput rose 65× to 6,500+ KOPS and memory utilization reached 74% through block coalescing and footer elimination.',
+      'Implemented malloc, free, realloc, and calloc, evolving the free-block structure from an implicit list to a segregated free list indexed by size class. Throughput rose 65× and memory utilization reached 74% through block coalescing and footer elimination.',
       'Wrote a heap consistency checker that validates block alignment, header integrity, and free-list correctness to catch memory corruption systematically.',
     ],
   },
@@ -115,7 +115,7 @@ export const education = {
     {
       term: 'Coursework',
       value:
-        'Foundations of Software Engineering, Artificial Intelligence, Machine Learning, Data Structures and Algorithms, Autonomous Agents, Functional Programming, Theoretical Computation',
+        'Foundations of Software Engineering, Computer Systems, Artificial Intelligence, Machine Learning, Data Structures and Algorithms, Autonomous Agents, Functional Programming, Theoretical Computation',
     },
   ],
 };
@@ -123,8 +123,8 @@ export const education = {
 export const awards = [
   {
     result: 'Champion',
-    event: 'Canadian Intermediate Mathematics Competition',
-    note: 'Top individual score among 9,000 contestants worldwide',
+    event: 'Canadian Intermediate Mathematics Contest',
+    note: 'Top individual score among 9,000+ contestants worldwide',
   },
   {
     result: '2nd place',
@@ -152,7 +152,7 @@ export const skills = [
     id: 'languages',
     group: 'Languages',
     color: 'var(--route-amber)',
-    items: ['Python', 'SQL', 'TypeScript', 'Java', 'C++'],
+    items: ['Python', 'C', 'C++', 'Java', 'SQL', 'TypeScript'],
   },
   {
     id: 'ml',
@@ -164,13 +164,13 @@ export const skills = [
     id: 'data',
     group: 'Data and infra',
     color: 'var(--route-cyan)',
-    items: ['Databricks', 'MongoDB', 'Postgres', 'Docker', 'Kubernetes', 'Git', 'Linux'],
+    items: ['Databricks', 'Splunk', 'Postgres', 'MongoDB', 'Docker', 'Git', 'Linux'],
   },
   {
     id: 'web',
     group: 'Web',
     color: 'var(--route-coral)',
-    items: ['Next.js', 'React', 'Angular'],
+    items: ['Node.js', 'Next.js', 'React', 'Angular', 'Playwright'],
   },
 ];
 
